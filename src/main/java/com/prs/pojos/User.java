@@ -8,6 +8,8 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -45,13 +47,29 @@ public class User {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
     
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
+    @OneToMany(mappedBy = "owner",orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Property> properties;
 
 	public User(Long id) {
 		super();
 		this.id = id;
 	}
+	
+	 public void addProperty(Property property) {
+	        properties.add(property);
+	        property.setOwner(this);
+	    }
+
+	    // Helper method to remove a property
+	    public void removeProperty(Property property) {
+	        properties.remove(property);
+	        property.setOwner(null);
+	    }
+
+//	    public User(Long id) {
+//	        this.id = id;
+//	    }
     
     
 }

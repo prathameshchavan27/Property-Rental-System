@@ -6,4 +6,6 @@ import com.prs.pojos.Images;
 
 public interface ImageRepository extends JpaRepository<Images, Long> {
 	Images findByImageUrl(String imageUrl);
+
+	void deleteByPropertyId(Long id);
 }

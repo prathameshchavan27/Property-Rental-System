@@ -37,11 +37,19 @@ public class SecurityConfig {
 	            return config;
 	        }))
 	        .authorizeHttpRequests(auth -> auth
-	            .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Allow preflight OPTIONS requests
+	            .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() 
+	            .requestMatchers(
+                        "/swagger-ui/**",       // Swagger UI
+                        "/v3/api-docs/**",     // OpenAPI documentation
+                        "/swagger-resources/**", // Swagger resources
+                        "/webjars/**"          // WebJars used by Swagger
+                ).permitAll()// Allow preflight OPTIONS requests
 	            .requestMatchers("login", "register").permitAll() // Public endpoints
 	            .requestMatchers("/admin/**").hasRole("ADMIN") // Admin-specific endpoints
 	            .requestMatchers("/landlord/**").hasAnyRole("LANDLORD", "ADMIN") // Landlord access
 	            .requestMatchers("/tenant/**").hasAnyRole("TENANT", "ADMIN") // Tenant access
+//	            .requestMatchers("/tenant/**").hasAnyRole("TENANT", "ADMIN") // Tenant access
+	            .requestMatchers("/properties/**").permitAll() // Tenant access
 	            .anyRequest().authenticated() // Protect other endpoints
 	        )
 	        .httpBasic(Customizer.withDefaults()) // Enable optional HTTP Basic Authentication
