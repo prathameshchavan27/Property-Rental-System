@@ -67,7 +67,7 @@ public class Property {
     @OneToMany(mappedBy = "propertyId", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Images> images;
 
-//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinTable(
         name = "property_amenities",
@@ -75,11 +75,10 @@ public class Property {
         inverseJoinColumns = @JoinColumn(name = "amenity_id")
     )
     private List<Amenity> amenities;
-//
-//    @OneToMany(mappedBy = "propertyId", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.EAGER)
-//    private List<Images> images;
-//
-//    private List<Amenity> amenities; 
+
+    @OneToMany(mappedBy = "propertyId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Feedback> feedbacks;
+    
 
     public Property(String title, String description, String address, String city, double rent,String type, User owner, List<Amenity> amenities) {
         this.title = title;

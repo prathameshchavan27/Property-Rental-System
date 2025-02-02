@@ -50,6 +50,9 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "owner",orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Property> properties;
+    
+    @OneToMany(mappedBy = "ownerId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Feedback> feedbacks;
 
 	public User(Long id) {
 		super();
