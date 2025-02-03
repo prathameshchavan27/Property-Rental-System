@@ -38,6 +38,7 @@ public class SecurityConfig {
 	        }))
 	        .authorizeHttpRequests(auth -> auth
 	            .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() 
+	            .requestMatchers("/images/**").permitAll()
 	            .requestMatchers(
                         "/swagger-ui/**",       // Swagger UI
                         "/v3/api-docs/**",     // OpenAPI documentation
@@ -48,7 +49,7 @@ public class SecurityConfig {
 	            .requestMatchers("/admin/**").hasRole("ADMIN") // Admin-specific endpoints
 	            .requestMatchers("/landlord/**").hasAnyRole("LANDLORD", "ADMIN") // Landlord access
 	            .requestMatchers("/tenant/**").hasAnyRole("TENANT", "ADMIN") // Tenant access
-//	            .requestMatchers("/tenant/**").hasAnyRole("TENANT", "ADMIN") // Tenant access
+//	            .requestMatchers("/bookings/**").hasAnyRole("LANDLORD","TENANT", "ADMIN") // Tenant access
 	            .requestMatchers("/properties/**").permitAll() // Tenant access
 	            .anyRequest().authenticated() // Protect other endpoints
 	        )

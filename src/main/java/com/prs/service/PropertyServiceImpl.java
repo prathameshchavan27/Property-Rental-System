@@ -50,7 +50,7 @@ public class PropertyServiceImpl implements PropertyService {
 	@Autowired
 	private UserDao userRepository;
 
-	private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/uploads/";
+	private static final String UPLOAD_DIR = System.getProperty("user.dir") + "src/main/resources/images/";
 
 	
 	@Override
