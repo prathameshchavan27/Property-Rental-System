@@ -54,4 +54,10 @@ public class BookingController {
     public ResponseEntity<List<Booking>> getRequestedBookings(@PathVariable Long tenantId) {
         return ResponseEntity.ok(bookingService.getBookingsRequests(tenantId));
     }
+    
+    @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<Booking>> getAllBookings() {
+        return ResponseEntity.ok(bookingService.getAllBookings());
+    }
 }

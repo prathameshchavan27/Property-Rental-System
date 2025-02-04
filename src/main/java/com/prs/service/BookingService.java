@@ -15,4 +15,6 @@ public interface BookingService {
 
 	List<Booking> getBookingsRequests(Long id);
 
+	List<Booking> getAllBookings();
+
 }

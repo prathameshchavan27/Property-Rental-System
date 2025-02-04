@@ -63,6 +63,7 @@ public class Property {
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private boolean available;
 
     @OneToMany(mappedBy = "propertyId", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Images> images;
@@ -91,6 +92,7 @@ public class Property {
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
         this.propertyType = PropertyType.valueOf(type.toUpperCase());
+        this.available = true;
     }
 
 	public Property(Long propertyId) {

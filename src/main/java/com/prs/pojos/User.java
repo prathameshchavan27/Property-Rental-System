@@ -51,6 +51,7 @@ public class User {
     @OneToMany(mappedBy = "owner",orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Property> properties;
     
+    @JsonIgnore
     @OneToMany(mappedBy = "ownerId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Feedback> feedbacks;
 

@@ -23,6 +23,7 @@ import com.prs.pojos.Images;
 import com.prs.pojos.Property;
 import com.prs.pojos.PropertyAmenity;
 import com.prs.pojos.PropertyAmenityId;
+import com.prs.pojos.PropertyType;
 import com.prs.pojos.User;
 
 import jakarta.persistence.EntityManager;
@@ -214,6 +215,32 @@ public class PropertyServiceImpl implements PropertyService {
 	public List<Property> getPropertiesByLid(Long id) {
 		// TODO Auto-generated method stub
 		return propertyRepository.findByOwner(new User(id));
+	}
+
+	@Override
+	public List<Property> getFilteredProperties(String city, Integer minRent, Integer maxRent, Boolean available, String propertyTypeStr, List<String> amenities) {
+	    PropertyType propertyType = null;
+	    if (propertyTypeStr != null && !propertyTypeStr.isEmpty()) {
+	        try {
+	            propertyType = PropertyType.valueOf(propertyTypeStr.toUpperCase());
+	        } catch (IllegalArgumentException e) {
+	            throw new RuntimeException("Invalid property type: " + propertyTypeStr);
+	        }
+	    }
+	    return propertyRepository.findFilteredProperties(city, minRent, maxRent, available, propertyType);
+	}
+//	public List<Property> getFilteredProperties(String city, Integer minRent, Integer maxRent, Boolean available,
+//			PropertyType propertyType, List<String> amenities) {
+//		// TODO Auto-generated method stub
+//		return propertyRepository.findFilteredProperties(city, minRent, maxRent, available, propertyType);
+//	}
+
+	@Override
+	public void updateAvailableStatus(Long id) {
+		// TODO Auto-generated method stub
+		Property p = propertyRepository.findById(id).orElseThrow();
+		p.setAvailable(false);
+		propertyRepository.save(p);
 	}
 	
 }

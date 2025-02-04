@@ -28,7 +28,8 @@ public class BookingServiceImpl implements BookingService {
     
     @Override
     public Booking createBooking(Booking booking) {
-        return bookingRepository.save(booking);
+    	Booking b = new Booking(booking.getPropertyId(), booking.getTenantId(), booking.getStartDate(), booking.getEndDate(), booking.getStatus());
+        return bookingRepository.save(b);
     }
 
     @Override
@@ -54,4 +55,10 @@ public class BookingServiceImpl implements BookingService {
 //        String message = "Your booking has been " + status.toString().toLowerCase();
 //        emailService.sendBookingConfirmation(user.getEmail(), message);
     }
+
+	@Override
+	public List<Booking> getAllBookings() {
+		// TODO Auto-generated method stub
+		return bookingRepository.findAll();
+	}
 }

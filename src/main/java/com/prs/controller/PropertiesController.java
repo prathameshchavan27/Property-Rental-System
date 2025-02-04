@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.prs.dto.PropertyRequestDTO;
 import com.prs.pojos.Property;
+import com.prs.pojos.PropertyType;
 
 
 
@@ -93,6 +94,20 @@ public class PropertiesController {
     public ResponseEntity<?> getAllProperties(){
     	return ResponseEntity.status(HttpStatus.OK).body(propertyService.getAllProperties());
     }
+    
+    @GetMapping("/properties/filter")
+    public ResponseEntity<List<Property>> getProperties(
+            @RequestParam(required = false) String city,
+            @RequestParam(required = false) Integer minRent,
+            @RequestParam(required = false) Integer maxRent,
+            @RequestParam(required = false) Boolean available,
+            @RequestParam(required = false) String propertyType,
+            @RequestParam(required = false) List<String> amenities) {
+//        PropertyType type = PropertyType.valueOf(propertyType);
+        List<Property> properties = propertyService.getFilteredProperties(city, minRent, maxRent, available, propertyType, amenities);
+        return ResponseEntity.ok(properties);
+    }
+
     
 //
     @GetMapping("/property/{id}")

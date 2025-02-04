@@ -34,8 +34,7 @@ public class Booking {
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-	public Booking(Long propertyId, Long tenantId, LocalDate startDate, LocalDate endDate, BookingStatus status,
-			LocalDateTime createdAt, LocalDateTime updatedAt) {
+	public Booking(Long propertyId, Long tenantId, LocalDate startDate, LocalDate endDate, BookingStatus status) {
 		super();
 		this.propertyId = propertyId;
 		this.tenantId = tenantId;
