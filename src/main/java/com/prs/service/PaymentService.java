@@ -1,6 +1,7 @@
 package com.prs.service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -65,5 +66,12 @@ public class PaymentService {
 	public Payment getPaymentDetails(Long bookingId) {
 		// TODO Auto-generated method stub
 		return paymentRepository.findByBookingId(bookingId);
+	}
+
+
+	public List<Payment> getPayments() {
+		// TODO Auto-generated method stub
+		
+		return paymentRepository.findAll();
 	}
 }

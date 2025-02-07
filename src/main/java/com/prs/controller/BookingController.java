@@ -25,6 +25,7 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
     
+    
     @PostMapping("/create")
     public ResponseEntity<Booking> createBooking(@RequestBody Booking booking) {
         Booking savedBooking = bookingService.createBooking(booking);

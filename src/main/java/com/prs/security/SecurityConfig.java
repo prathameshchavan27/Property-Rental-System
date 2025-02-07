@@ -52,6 +52,7 @@ public class SecurityConfig {
 //	            .requestMatchers("/bookings/**").hasAnyRole("LANDLORD","TENANT", "ADMIN") // Tenant access
 	            .requestMatchers("/properties/**").permitAll() // Tenant access
 	            .requestMatchers("/webhook/**").permitAll()
+	            .requestMatchers("/password/**").permitAll()
 	            .anyRequest().authenticated() // Protect other endpoints
 	        )
 	        .httpBasic(Customizer.withDefaults()) // Enable optional HTTP Basic Authentication

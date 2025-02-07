@@ -62,4 +62,11 @@ public class PaymentController {
     public ResponseEntity<?> getPaymentDetails(@PathVariable Long bookingId){
     	return ResponseEntity.status(HttpStatus.OK).body(paymentService.getPaymentDetails(bookingId));
     }
+    
+    @GetMapping("/getpayments")
+    public ResponseEntity<?> getPayments(){
+    	return ResponseEntity.status(HttpStatus.OK).body(paymentService.getPayments());
+    }
+    
+    
 }
