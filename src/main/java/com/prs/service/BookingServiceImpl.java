@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.prs.dao.BookingRepository;
 import com.prs.dao.UserDao;
+import com.prs.dto.BookingPaymentDTO;
 import com.prs.pojos.Booking;
 import com.prs.pojos.BookingStatus;
 import com.prs.pojos.User;
@@ -61,4 +62,15 @@ public class BookingServiceImpl implements BookingService {
 		// TODO Auto-generated method stub
 		return bookingRepository.findAll();
 	}
+	
+	@Override
+	public List<BookingPaymentDTO> fetchBookingPayments() {
+        return bookingRepository.getBookingPayments();
+    }
+	
+//	@Override
+//	public List<Booking> getUserBookings(Long userId) {
+//		// TODO Auto-generated method stub
+//		return bookingRepository.findByTenantId(userId);
+//	}
 }

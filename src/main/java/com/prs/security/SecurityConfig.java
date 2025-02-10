@@ -49,7 +49,8 @@ public class SecurityConfig {
 	            .requestMatchers("/admin/**").hasRole("ADMIN") // Admin-specific endpoints
 	            .requestMatchers("/landlord/**").hasAnyRole("LANDLORD", "ADMIN") // Landlord access
 	            .requestMatchers("/tenant/**").hasAnyRole("TENANT", "ADMIN") // Tenant access
-//	            .requestMatchers("/bookings/**").hasAnyRole("LANDLORD","TENANT", "ADMIN") // Tenant access
+	            .requestMatchers("/bookings/**").hasAnyRole("LANDLORD","TENANT", "ADMIN") // Tenant access
+	            .requestMatchers("/users/**").hasAnyRole("LANDLORD","TENANT", "ADMIN") 
 	            .requestMatchers("/properties/**").permitAll() // Tenant access
 	            .requestMatchers("/webhook/**").permitAll()
 	            .requestMatchers("/password/**").permitAll()
